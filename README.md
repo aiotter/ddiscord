@@ -2,10 +2,10 @@ ddiscord: debugger for discord.py
 =====
 
 Powered by [discord.py](https://github.com/Rapptz/discord.py).
-This helps you write code on discord.py and manage your server via one-liner program.
-Tested on discord.py v1.0.0 but in theory it works on v0.16.7 or later.
+This helps you write code for discord.py and manage your server via one-liner programs.
+Tested on discord.py v1.0.0 but in theory it works on v0.16.7 and above.
 
-## How to use ddiscord
+## Usage
     $ ddiscord
      - Debugger for discord.py -
     Running on Python 3.7.2. Send EOF (Ctrl-D) to exit.
@@ -20,15 +20,15 @@ Tested on discord.py v1.0.0 but in theory it works on v0.16.7 or later.
     <TextChannel id=012345678901234567 name='test' position=1>
     >>>
 
-## How to install ddiscord
+## Installation
     $ python3 -m pip install ddiscord
 
-## How to start ddiscord
-There are four ways to start ddiscord, which are listed below in order of precedence.
+## Logging On
+There are four ways to log into your bot in ddiscord. They are listed below in look up order.
 
-1. Passing your token in an argument.
+1. Passing your token as an argument.
 2. Passing your token via standard input. `-` is needed as a first argument.
-3. Passing your token via the file `./token`.
+3. Storing your token in a file named `token` in the current directory.
 4. Passing your token via environment variable `DISCORD_TOKEN`.
 5. Run ddiscord first, then ddiscord will ask you the token.
 
