@@ -6,6 +6,7 @@ import sys
 import io
 import os
 import platform
+from code import compile_command
 from contextlib import redirect_stdout
 from pathlib import Path
 
@@ -33,8 +34,12 @@ async def on_ready():
         try:
             try:
                 body = await client.loop.run_in_executor(None, input, '>>> ')
+                while not compile_command(body):
+                    body += await client.loop.run_in_executor(None, input, '... ') + '\n'
+
             except (EOFError, KeyboardInterrupt, RuntimeError):
                 sys.exit()
+
             if not body:
                 continue
 
