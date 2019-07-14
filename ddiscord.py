@@ -21,7 +21,9 @@ async def on_ready():
         return
     started = True
 
-    print(f'\rLogged in as {client.user} ({client.user.id})\n')
+    print(f'\rLogged in as {client.user} ({client.user.id})')
+    print('You can refer to your Client instance as `client` variable. '
+          'i.e. client.guilds\n')
 
     global env
     env = {'client': client}

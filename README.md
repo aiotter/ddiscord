@@ -10,6 +10,7 @@ Tested on discord.py v1.0.0 but in theory it works on v0.16.7 or later.
      - Debugger for discord.py -
     Running on Python 3.7.2. Send EOF (Ctrl-D) to exit.
     Logged in as YourBot#0000 (012345678901234567)
+    You can refer to your Client instance as `client` variable. i.e. client.guilds
     
     >>> len(client.guilds)
     1
