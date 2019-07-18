@@ -18,6 +18,10 @@ Tested on discord.py v1.0.0 but in theory it works on v0.16.7 and above.
     True
     >>> await client.guilds[0].create_text_channel('test')
     <TextChannel id=012345678901234567 name='test' position=1>
+    >>> for channel in client.get_all_channels():
+    ...     if channel.name == 'test':
+    ...         await channel.send('announcement test!')
+    ... 
     >>>
 
 ## Installation
