@@ -11,20 +11,12 @@ from contextlib import redirect_stdout
 from pathlib import Path
 
 
-client = discord.Client()
-started = False
-
-
-@client.event
-async def on_ready():
-    global started
-    if started:
-        return
-    started = True
-
+async def run_debugger(client: discord.Client):
+    print('Connecting to discord...', end='', flush=True)
+    await client.wait_until_ready()
     print(f'\rLogged in as {client.user} ({client.user.id})')
     print('You can refer to your Client instance as `client` variable. '
-          'i.e. client.guilds\n')
+          'i.e. client.guilds', end='\n\n')
 
     global env
     env = {'client': client}
@@ -70,7 +62,7 @@ async def on_ready():
             continue
 
 
-def main():
+def get_token():
     token = None
     token_path = Path('./token')
     token_env = os.environ.get('DISCORD_TOKEN')
@@ -98,8 +90,14 @@ def main():
 
     if not token:
         token = input('Input your token: ')
-    print('Connecting to discord...', end='', flush=True)
 
+    return token
+
+
+def main():
+    token = get_token()
+    client = discord.Client()
+    client.loop.create_task(run_debugger(client))
     client.run(token)
 
 
