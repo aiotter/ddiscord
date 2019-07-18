@@ -1,5 +1,6 @@
 import discord
 import readline
+import asyncio
 import textwrap
 import traceback
 import sys
@@ -29,8 +30,13 @@ async def run_debugger(client: discord.Client):
                 while not compile_command(body):
                     body += await client.loop.run_in_executor(None, input, '... ') + '\n'
 
-            except (EOFError, KeyboardInterrupt, RuntimeError):
-                sys.exit()
+            except (EOFError, KeyboardInterrupt):
+                try:
+                    await client.logout()
+                except asyncio.CancelledError:
+                    pass
+                finally:
+                    break
 
             if not body:
                 continue
