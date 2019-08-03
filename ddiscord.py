@@ -1,5 +1,4 @@
 import discord
-import readline
 import asyncio
 import textwrap
 import traceback
@@ -10,6 +9,12 @@ import platform
 from code import compile_command
 from contextlib import redirect_stdout
 from pathlib import Path
+
+try:
+    # input() の操作性向上のために readline をインポート
+    import readline
+except ImportError:
+    pass
 
 
 async def run_debugger(client: discord.Client):
