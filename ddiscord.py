@@ -33,7 +33,7 @@ async def run_debugger(client: discord.Client):
         try:
             try:
                 body = await client.loop.run_in_executor(None, input, '>>> ')
-                while not compile_command(re.sub(r'\s*await *', r'', body)):
+                while not compile_command(re.sub(r'(\s*)(await|async) *', r'\1', body)):
                     body += '\n' + await client.loop.run_in_executor(None, input, '... ')
 
             except (EOFError, KeyboardInterrupt):
