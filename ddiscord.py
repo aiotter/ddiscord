@@ -28,7 +28,7 @@ args = parser.parse_args()
 
 async def run_debugger(client: discord.Client):
     print('Connecting to discord...', end='', flush=True)
-    await client.loop.run_in_executor(None, client.wait_until_ready())
+    await client.wait_until_ready()
     print(f'\rLogged in as {client.user} ({client.user.id})')
     print('You can refer to your Client instance as `client` variable. '
           'i.e. client.guilds', end='\n\n')
@@ -146,9 +146,9 @@ def main():
     else:
         # d.py2.0
         client = discord.Client(intents=get_intents())
-        async def _setup_hook(self):
-            await run_debugger(self)
-        client.setup_hook = _setup_hook
+        async def _on_ready():
+            await run_debugger(client)
+        client.on_ready = _on_ready
 
     client.run(token)
 
