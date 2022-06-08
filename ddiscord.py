@@ -21,7 +21,7 @@ except ImportError:
 parser = argparse.ArgumentParser(prog="ddiscord")
 parser.add_argument("token", nargs="?", default="-", help="Login token")
 parser.add_argument(
-    "-i", "--intents", nargs="*", default=["default"]
+    "-i", "--intents", nargs="*", default=["default"],
     help="Using intents('all' for all intents). If none, using Intents.default")
 args = parser.parse_args()
 
