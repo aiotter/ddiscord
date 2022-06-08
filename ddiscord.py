@@ -113,7 +113,7 @@ class DebugClient(discord.Client):
 
 def main():
     token = get_token()
-    client = DebugClient()
+    client = DebugClient(intents=discord.Intents.all())
     client.run(token)
 
 
