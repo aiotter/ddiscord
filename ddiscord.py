@@ -130,8 +130,8 @@ def get_intents():
     for i in inte:
         parsed = i.replace(" ", "").split("=")
         if not hasattr(intents, parsed[0]):
-            raise ValueError("Invalid argument has passed.")
-        setattr(intents, parsed[0], bool(parsed[1]))
+            raise ValueError("Invalid intents argument has passed.")
+        setattr(intents, parsed[0], bool(parsed[1]) if len(parsed) > 1 else True)
 
     return intents
 
@@ -139,9 +139,13 @@ def get_intents():
 def main():
     token = get_token()
 
-    if discord.version_info[0] < 2:
-        # discordのバージョンは1.7以下
+    if discord.version_info[0] < 2 and discord.version_info[1] < 5:
+        # discordのバージョンは1.4以下
         client = discord.Client()
+        client.loop.create_task(run_debugger(client))
+    elif discord.version_info[0] < 2:
+        # バージョン1.5 ~ 1.7 (intentsは利用可能)
+        client = discord.Client(intents=get_intents())
         client.loop.create_task(run_debugger(client))
     else:
         # d.py2.0
