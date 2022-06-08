@@ -117,7 +117,7 @@ def get_intents():
     elif intents_env:
         inte = intents_env
 
-    if args.intents == ["default"]:
+    elif args.intents == ["default"]:
         return discord.Intents.default()
     elif args.intents in [["all"], ["All"]]:
         return discord.Intents.all()
