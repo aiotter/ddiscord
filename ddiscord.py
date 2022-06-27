@@ -106,10 +106,14 @@ def get_token():
     return token
 
 
+class DebugClient(discord.Client):
+    async def setup_hook(self):
+        self.loop.create_task(run_debugger(self))
+
+
 def main():
     token = get_token()
-    client = discord.Client()
-    client.loop.create_task(run_debugger(client))
+    client = DebugClient(intents=discord.Intents.all())
     client.run(token)
 
 
